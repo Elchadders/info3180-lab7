@@ -1,5 +1,8 @@
-import requests
+from app import app
+from app.image_getter import image_getter
+from flask import render_template, request, redirect, url_for, jsonify
 from bs4 import BeautifulSoup
+import requests
 import urlparse
 
 url = "https://www.walmart.com/ip/54649026"
@@ -20,7 +23,7 @@ if thumbnail_spec and thumbnail_spec['href']:
     print ''
 
 
-image = %s"
+image = []
 for img in soup.findAll("img", src=True):
-   print image % urlparse.urljoin(url, img["src"])
-   print print img.get("src")
+	   image.append(img.get("src"))
+    return image
